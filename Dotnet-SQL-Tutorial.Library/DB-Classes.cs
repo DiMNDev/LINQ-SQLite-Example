@@ -44,8 +44,7 @@ public class DB_Conn
 
     public List<Record> GetRecords()
     {
-        // var options = new SQLiteConnectionString(ConnectionString, false);
-        // var conn = new SQLiteConnection(options);
+
         var conn = _connection;
 
         List<Record> results = conn.Table<Record>().ToList();
@@ -57,8 +56,8 @@ public class DB_Conn
 
     public void InsertRecord(string name, int age)
     {
-        var options = new SQLiteConnectionString(ConnectionString, false);
-        var conn = new SQLiteConnection(options);
+
+        var conn = _connection;
 
         var record = new Record { Id = new Guid(), Name = name, Age = age, Date = DateTime.Now };
 

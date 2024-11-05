@@ -21,7 +21,7 @@ Now that we have the package installed, We'll start by defining a database conne
 
 ```
 C#
-public class DB-Conn
+public class DB_Conn
 {
     SQLiteConnection _connection;
 
@@ -76,8 +76,28 @@ Now that we have modeled the data in a way that SQLite can understand, we can wr
 
 ```
 C#
-   public void CreateTable()
-    {
-        _connection.CreateTable<Record>();
-    }
+public void CreateTable()
+{
+  _connection.CreateTable<Record>();
+}
+```
+
+### Create - Adding New Data
+
+Great! We now have a database, a data model, and created a method to create a table. Next we need to add data to the database.
+To add data to the database we can write another method
+
+```
+C#
+public void InsertRecord(string name, int age)
+{
+
+  var conn = _connection;
+
+  var record = new Record { Id = new Guid(), Name = name, Age = age, Date = DateTime.Now };
+
+  var results = conn.Insert(record);
+
+  conn.Close();
+}
 ```
